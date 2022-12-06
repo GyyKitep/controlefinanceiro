@@ -23,6 +23,7 @@ import br.com.controlefinanceiro.controller.form.DespesaForm;
 import br.com.controlefinanceiro.dto.DespesaDto;
 import br.com.controlefinanceiro.dto.DetalhesDaDespesaDto;
 import br.com.controlefinanceiro.modelo.Despesa;
+import br.com.controlefinanceiro.repository.CategoriaRepository;
 import br.com.controlefinanceiro.repository.DespesaRepository;
 
 @RestController  
@@ -31,6 +32,9 @@ public class DespesaController {
 	
 	@Autowired
 	private DespesaRepository despesaRepository;
+	
+	@Autowired
+	private CategoriaRepository categoriaRepository;
 	
 	@GetMapping
 	public List<DespesaDto> listarDespesas(){
@@ -59,7 +63,7 @@ public class DespesaController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<DespesaDto> cadastrar(@RequestBody DespesaForm form, UriComponentsBuilder uriBuilder) {
-		Despesa despesa = form.converter(despesaRepository);
+		Despesa despesa = form.converter(despesaRepository, categoriaRepository);
 		
 		despesaRepository.save(despesa);
 		URI uri = uriBuilder.path("/despesa/{id}").buildAndExpand(despesa.getId()).toUri();
@@ -74,7 +78,7 @@ public class DespesaController {
 		Optional<Despesa> optional = despesaRepository.findById(id);
 		
 		if  (optional.isPresent()) {
-			Despesa despesa = form.atualizar(id, despesaRepository); 
+			Despesa despesa = form.atualizar(id, despesaRepository, categoriaRepository); 
 			despesaRepository.save(despesa);
 			return ResponseEntity.ok(new DespesaDto(despesa));
 		}
