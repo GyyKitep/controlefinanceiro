@@ -1,5 +1,6 @@
 package br.com.controlefinanceiro.controller.form;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import br.com.controlefinanceiro.modelo.Categoria;
@@ -12,7 +13,7 @@ public class AtualizacaoDespesaForm {
 	
 	private String descricao;
 	private double valor;
-	private Integer data;
+	private LocalDate data;
 	private String categoria;
 	
 	public String getDescricao() {
@@ -27,10 +28,10 @@ public class AtualizacaoDespesaForm {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	public Integer getData() {
+	public LocalDate getData() {
 		return data;
 	}
-	public void setData(Integer data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 	

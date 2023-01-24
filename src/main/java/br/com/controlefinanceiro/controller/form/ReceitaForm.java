@@ -1,5 +1,7 @@
 package br.com.controlefinanceiro.controller.form;
 
+import java.time.LocalDate;
+
 import br.com.controlefinanceiro.modelo.Receita;
 import br.com.controlefinanceiro.repository.ReceitaRepository;
 
@@ -7,7 +9,7 @@ public class ReceitaForm {
 
 	private String descricao;
 	private double valor;
-	private Integer data;
+	private LocalDate data;
 
 	public ReceitaForm() {
 	}
@@ -28,15 +30,15 @@ public class ReceitaForm {
 		this.valor = valor;
 	}
 
-	public Integer getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(Integer data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 
-	public Receita converter(ReceitaRepository receitaRepository) {	
+	public Receita converter(ReceitaRepository receitaRepository) {
 		return new Receita(this.descricao, this.valor, this.data);
 	}	
 	

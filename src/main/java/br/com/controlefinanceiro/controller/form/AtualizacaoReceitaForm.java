@@ -1,5 +1,7 @@
 package br.com.controlefinanceiro.controller.form;
 
+import java.time.LocalDate;
+
 import br.com.controlefinanceiro.modelo.Receita;
 import br.com.controlefinanceiro.repository.ReceitaRepository;
 
@@ -7,7 +9,7 @@ public class AtualizacaoReceitaForm {
 	
 	private String descricao;
 	private double valor;
-	private Integer data;
+	private LocalDate data;
 	
 	public String getDescricao() {
 		return descricao;
@@ -21,10 +23,10 @@ public class AtualizacaoReceitaForm {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	public Integer getData() {
+	public LocalDate getData() {
 		return data;
 	}
-	public void setData(Integer data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 	

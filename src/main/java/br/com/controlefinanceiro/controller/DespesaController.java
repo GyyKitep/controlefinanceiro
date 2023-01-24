@@ -1,6 +1,7 @@
 package br.com.controlefinanceiro.controller;
 
 import java.net.URI;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,9 +23,12 @@ import br.com.controlefinanceiro.controller.form.AtualizacaoDespesaForm;
 import br.com.controlefinanceiro.controller.form.DespesaForm;
 import br.com.controlefinanceiro.dto.DespesaDto;
 import br.com.controlefinanceiro.dto.DetalhesDaDespesaDto;
+import br.com.controlefinanceiro.dto.ReceitaDto;
 import br.com.controlefinanceiro.modelo.Despesa;
+import br.com.controlefinanceiro.modelo.Receita;
 import br.com.controlefinanceiro.repository.CategoriaRepository;
 import br.com.controlefinanceiro.repository.DespesaRepository;
+
 
 @RestController  
 @RequestMapping("/despesa")
@@ -103,7 +107,17 @@ public class DespesaController {
 		
 		return ResponseEntity.notFound().build();		
 
-	}		
+	}
+	
+	@GetMapping("/{ano}/{mes}")
+	public List<DespesaDto> listarDespesasPorMes(@PathVariable(name = "ano") int ano,
+			@PathVariable(name = "mes") int mes) {
+
+		List<Despesa> despesa = despesaRepository.findByProcuraPorAnoMes(ano, mes);
+
+		return DespesaDto.converter(despesa);
+	}	
+	
 		
 	
 }

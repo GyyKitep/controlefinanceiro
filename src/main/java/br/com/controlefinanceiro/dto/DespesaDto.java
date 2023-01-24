@@ -1,5 +1,6 @@
 package br.com.controlefinanceiro.dto;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class DespesaDto {
 
 	private String descricao;
 	private double valor;
-	private Integer data;
+	private String data;
 	private Categoria categoria;
 	
 	public DespesaDto() {
@@ -19,7 +20,10 @@ public class DespesaDto {
 	public DespesaDto(Despesa despesa) {
 		this.descricao = despesa.getDescricao();
 		this.valor = despesa.getValor();
-		this.data = despesa.getData();
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");	
+		this.data = formatter.format(despesa.getData());	
+		
 		this.categoria = despesa.getCategoria();
 	}
 	
@@ -35,10 +39,10 @@ public class DespesaDto {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	public Integer getData() {
+	public String getData() {
 		return data;
 	}
-	public void setData(Integer data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 	

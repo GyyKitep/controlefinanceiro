@@ -1,10 +1,12 @@
 package br.com.controlefinanceiro.modelo;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Despesa {
@@ -14,15 +16,15 @@ public class Despesa {
 
 	private String descricao;
 	private double valor;
-	private Integer data;
+	private LocalDate data;
 	
-	@OneToOne
+	@ManyToOne
 	private Categoria categoria;
 	
 	public Despesa() {
 	}
 	
-	public Despesa(String descricao, double valor, Integer data, Categoria categoria) {
+	public Despesa(String descricao, double valor, LocalDate data, Categoria categoria) {
 		this.descricao = descricao;
 		this.valor = valor;
 		this.data = data;
@@ -41,11 +43,11 @@ public class Despesa {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	public Integer getData() {
+	public LocalDate getData() {
 		return data;
 	}
-	public void setData(Integer data) {
-		this.data = data;
+	public void setData(LocalDate data) {
+		this.data = data ;
 	}
 	public Long getId() {
 		return id;

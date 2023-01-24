@@ -1,5 +1,6 @@
 package br.com.controlefinanceiro.dto;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class ReceitaDto {
 
 	private String descricao;
 	private double valor;
-	private Integer data;
+	private String data;
 	
 	public ReceitaDto() {
 		
@@ -18,7 +19,9 @@ public class ReceitaDto {
 	public ReceitaDto(Receita receita) {
 		this.descricao = receita.getDescricao();
 		this.valor = receita.getValor();
-		this.data = receita.getData();
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");	
+		this.data = formatter.format(receita.getData());	
 	}
 	
 	public String getDescricao() {
@@ -33,10 +36,10 @@ public class ReceitaDto {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	public Integer getData() {
+	public String getData() {
 		return data;
 	}
-	public void setData(Integer data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 	

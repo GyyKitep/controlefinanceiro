@@ -1,5 +1,7 @@
 package br.com.controlefinanceiro.modelo;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,12 +15,12 @@ public class Receita {
 
 	private String descricao;
 	private double valor;
-	private Integer data;
+	private LocalDate data;
 	
 	public Receita() {
 	}
 	
-	public Receita(String descricao, double valor, Integer data) {
+	public Receita(String descricao, double valor, LocalDate data) {
 		this.descricao = descricao;
 		this.valor = valor;
 		this.data = data;
@@ -37,10 +39,10 @@ public class Receita {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	public Integer getData() {
+	public LocalDate getData() {
 		return data;
 	}
-	public void setData(Integer data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 	public Long getId() {
